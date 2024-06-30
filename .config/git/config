@@ -1,0 +1,10 @@
+[commit]
+    gpgsign = true
+
+[init]
+    defaultBranch = "main"
+
+[user]
+    email = "kenjipuro@proton.me"
+    name = "Aoki Kenji"
+    signingkey = "AE3996B4ED7C25DB3FD0380CB1E2EB1B6F615173"
