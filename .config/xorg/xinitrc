@@ -16,6 +16,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
 
+if [ -z "$HOME" ]; then
+    echo "Failed to get the home directory." >&2
+    exit 1
+fi
+
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-${HOME}/.config}/gtk-2.0/gtkrc"
+systemctl --user import-environment GTK2_RC_FILES || exit 1
+
 for script in /etc/X11/xinit/xinitrc.d/*.sh; do
     . -- "$script"
 done
