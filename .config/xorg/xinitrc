@@ -24,10 +24,15 @@ fi
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-${HOME}/.config}/gtk-2.0/gtkrc"
 systemctl --user import-environment GTK2_RC_FILES || exit 1
 
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export XMODIFIERS="@im=fcitx"
+
 for script in /etc/X11/xinit/xinitrc.d/*.sh; do
     . -- "$script"
 done
 
+fcitx5 &
 unclutter &
 xss-lock -- slock &
 
