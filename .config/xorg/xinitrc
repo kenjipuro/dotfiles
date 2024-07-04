@@ -33,6 +33,7 @@ for script in /etc/X11/xinit/xinitrc.d/*.sh; do
 done
 
 fcitx5 &
+lxpolkit &
 unclutter &
 xss-lock -- slock &
 
