@@ -1,4 +1,8 @@
 [Hotkey]
 AltTriggerKeys=
+EnumerateGroupBackwardKeys=
+
+[Hotkey/EnumerateGroupForwardKeys]
+0=Control+Shift+space
 
 # vim: set filetype=cfg:
