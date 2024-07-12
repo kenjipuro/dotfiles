@@ -1,0 +1,62 @@
+#!/bin/sh -e
+
+# Copyright (C) 2024 Aoki Kenji
+# This file is part of Aoki Kenji's Dotfiles.
+#
+# Aoki Kenji's Dotfiles is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# Aoki Kenji's Dotfiles is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
+
+if [ "$#" -lt 1 ]; then
+    echo "Usage: sudo-ask-pass PROMPT" >&2
+    exit 1
+fi
+
+# Usage: match STRING PATTERN
+match() {
+    printf "%s" "$1" | grep --quiet -- "$2"
+}
+
+# Usage: try_dmenu PROMPT
+try_dmenu() {
+    printf "" | dmenu -P -p "$1"
+}
+
+try_pass() {
+    hostname="$(hostnamectl hostname)"
+    pass "sys/${hostname}/${username}"
+}
+
+# Usage: try_standard_input PROMPT
+try_standard_input() {
+    printf "%s" "$1" >&2
+
+    stty -echo
+    read -r password
+    stty echo
+    echo >&2
+
+    printf "%s" "$password"
+}
+
+username_pattern='[a-zA-Z_][a-zA-Z0-9_-]*'
+if match "$1" "^\[sudo\] password for ${username_pattern}: \$"; then
+    username="$(printf "%s" "$1" | cut --delimiter ' ' --fields 4 |
+        head --bytes -2)"
+elif match "$1" "^\[sudo\] ${username_pattern} のパスワード:\$"; then
+    username="$(printf "%s" "$1" | cut --delimiter ' ' --fields 2)"
+fi
+
+[ -n "$username" ] &&
+    try_pass ||
+    try_dmenu "$1" ||
+    try_standard_input "$1"
