@@ -28,12 +28,12 @@ match() {
 
 # Usage: try_dmenu PROMPT
 try_dmenu() {
-    printf "" | dmenu -P -p "$1"
+    printf "" | dmenu -P -p "$1" 2> /dev/null
 }
 
 try_pass() {
     hostname="$(hostnamectl hostname)"
-    pass "sys/${hostname}/${username}"
+    pass "sys/${hostname}/${username}" 2> /dev/null
 }
 
 # Usage: try_standard_input PROMPT
