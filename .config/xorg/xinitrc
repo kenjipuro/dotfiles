@@ -34,6 +34,7 @@ for script in /etc/X11/xinit/xinitrc.d/*.sh; do
     . -- "$script"
 done
 
+"${HOME}/.local/lib/dotfiles/status-bar" &
 element-desktop --hidden &
 fcitx5 &
 lxpolkit &
