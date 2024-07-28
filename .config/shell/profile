@@ -37,6 +37,7 @@ mkdir --mode 700 --parents -- \
     "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME" ||
     exit 1
 
+export BROWSER="xdg-open"
 export EDITOR="nvim"
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
