@@ -17,7 +17,11 @@
 # Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
 
 while :; do
-    xsetroot -name "$(calcurse --next | tail --lines 1 |
-        cut --delimiter ' ' --fields 4-)  $(date)"
-    sleep 10
+    newsboat="$(pidof newsboat > /dev/null ||
+        { newsboat -x print-unread | tr --delete '\n' && printf "  "; })"
+    calcurse="$(calcurse --next | tail --lines 1 |
+        cut --delimiter ' ' --fields 4-)  "
+
+    xsetroot -name "${newsboat}${calcurse}$(date)"
+    sleep 1m
 done
