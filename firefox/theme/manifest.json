@@ -1,0 +1,26 @@
+{
+    "applications": {
+        "gecko": {
+            "id": "sora@aokikenji"
+        }
+    },
+    "manifest_version": 2,
+    "name": "Sora",
+    "theme": {
+        "colors": {
+            "frame": "#11111f",
+            "popup": "#1f2229",
+            "popup_text": "#cbddfd",
+            "tab_background_text": "#cbddfd",
+            "tab_line": "#11da86",
+            "tab_loading": "#11da86",
+            "toolbar": "#11111f",
+            "toolbar_field": "#1f2229",
+            "toolbar_field_text": "#cbddfd",
+            "toolbar_text": "#cbddfd"
+        },
+        "images": {},
+        "properties": {}
+    },
+    "version": "1.0"
+}
