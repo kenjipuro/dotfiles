@@ -1,0 +1,63 @@
+" Copyright (C) 2024 Aoki Kenji
+" This file is part of Aoki Kenji's Dotfiles.
+"
+" Aoki Kenji's Dotfiles is free software: you can redistribute it and/or modify
+" it under the terms of the GNU General Public License as published by the Free
+" Software Foundation, either version 3 of the License, or (at your option) any
+" later version.
+"
+" Aoki Kenji's Dotfiles is distributed in the hope that it will be useful, but
+" WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+" FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+" details.
+"
+" You should have received a copy of the GNU General Public License along with
+" Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
+
+set newtab about:blank
+seturl https://teams.microsoft.com/ superignore true
+
+bind j scrollline 4
+bind k scrollline -4
+
+bind J tabnext
+bind K tabprev
+
+set searchurls.ap https://archlinux.org/packages/?q=%s
+set searchurls.au https://aur.archlinux.org/packages?K=%s
+set searchurls.aup https://aur.archlinux.org/packages/%s
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
+set searchurls.d https://duckduckgo.com/?q=%s
+set searchurls.g https://www.google.com/search?q=%s
+set searchurls.j https://jisho.org/search/%s
+set searchurls.rs https://www.reddit.com/r/%s
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s
+set searchurls.wj https://ja.wikipedia.org/w/index.php?search=%s
+set searchurls.wt https://en.wiktionary.org/w/index.php?search=%s
+set searchurls.y https://youtube.com/results?search_query=%s
+
+setnull searchurls.amazon
+setnull searchurls.amazonuk
+setnull searchurls.bing
+setnull searchurls.cnrtl
+setnull searchurls.duckduckgo
+setnull searchurls.gentoo_wiki
+setnull searchurls.github
+setnull searchurls.google
+setnull searchurls.googlelucky
+setnull searchurls.googleuk
+setnull searchurls.mdn
+setnull searchurls.osm
+setnull searchurls.qwant
+setnull searchurls.scholar
+setnull searchurls.searx
+setnull searchurls.startpage
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.yahoo
+setnull searchurls.youtube
+
+unbind p
+unbind P
+
+" vim: set filetype=vim:
