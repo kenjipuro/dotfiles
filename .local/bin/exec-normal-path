@@ -23,9 +23,25 @@ fi
 
 # Usage: cut_path [EXTRA_CUT_ARGUMENTS]...
 cut_path() {
-    printf "%s" "$PATH" | cut --delimiter ':' "$@"
+    printf "%s" "$old_path" | cut --delimiter ':' "$@"
 }
 
-[ "$(cut_path --fields 1)" = "${HOME}/.local/bin" ] &&
-    PATH="$(cut_path --fields 2-)" exec "$@"
-exec "$@"
+maybe_append_segment() {
+    segment="$(cut_path --fields 1)"
+    [ "$segment" = "${HOME}/.local/bin" ] && return
+    [ -z "$final_path" ] && final_path="$segment" ||
+        final_path="${final_path}:${segment}"
+}
+
+old_path="$PATH"
+final_path=""
+
+while [ -n "$old_path" ]; do
+    maybe_append_segment
+
+    new_path="$(cut_path --fields 2-)"
+    [ "$old_path" = "$new_path" ] && break
+    old_path="$new_path"
+done
+
+PATH="$final_path" exec "$@"
