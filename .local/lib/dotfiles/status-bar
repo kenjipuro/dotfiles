@@ -17,8 +17,8 @@
 # Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
 
 while :; do
-    newsboat="$(pidof newsboat > /dev/null ||
-        { newsboat -x print-unread | tr --delete '\n' && printf "  "; })"
+    [ ! -f "${XDG_DATA_HOME}/newsboat/cache.db.lock" ] &&
+        newsboat="$(newsboat --execute print-unread)  " || newsboat=""
     calcurse="$(calcurse --next | tail --lines 1 |
         cut --delimiter ' ' --fields 4-)  "
 
