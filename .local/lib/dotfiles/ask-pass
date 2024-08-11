@@ -36,6 +36,7 @@ try_dmenu() {
 try_pass() {
     case "$executable_name" in
         sudo-ask-pass) try_pass_sudo "$1" ;;
+        ssh-ask-pass) try_pass_ssh "$1" ;;
         *) return 1 ;;
     esac
 }
@@ -53,6 +54,16 @@ try_pass_sudo() {
     fi
 
     pass "sys/$(hostnamectl hostname)/${username}" 2> /dev/null
+}
+
+# Usage: try_pass_ssh PROMPT
+try_pass_ssh() {
+    if ! match "$1" "^Enter passphrase for key '[^']\+': \$"; then
+        return 1
+    fi
+
+    pass "sys/$(hostnamectl hostname)/ssh/$(basename -- "$(printf "%s" "$1" |
+        cut --delimiter "'" --fields 2)")" 2> /dev/null
 }
 
 # Usage: try_standard_input PROMPT
