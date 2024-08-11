@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+# Copyright (C) 2024 Aoki Kenji
+# This file is part of Aoki Kenji's Dotfiles.
+#
+# Aoki Kenji's Dotfiles is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# Aoki Kenji's Dotfiles is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
+
+hostnamectl hostname 2> /dev/null ||
+    cat -- "${PREFIX}/etc/hostname" 2> /dev/null ||
+    # fallback in case $PREFIX is overwritten, such as by pass(1)
+    cat -- "${HOME}/../usr/etc/hostname" 2> /dev/null ||
+    echo localhost
