@@ -1,0 +1,59 @@
+[global]
+foreground = "#cbddfd"
+idle_threshold = 60
+mouse_middle_click = "do_action"
+stack_duplicates = false
+
+browser = "xdg-open"
+dmenu = "dmenu"
+
+corner_radius = 12
+frame_width = 2
+horizontal_padding = 10
+padding = 10
+transparency = 10
+width = 350
+
+ellipsize = "end"
+font = "sans-serif 10"
+line_height = 1
+markup = "no"
+
+enable_recursive_icon_lookup = true
+icon_theme = "Papirus-Dark"
+max_icon_size = 32
+
+gap_size = 4
+notification_limit = 5
+offset = "0x40"
+origin = "top-center"
+
+progress_bar_corner_radius = 4
+progress_bar_max_width = 350
+progress_bar_min_width = 350
+
+[urgency_critical]
+background = "#11111f"
+frame_color = "#f15151"
+highlight = "#f15151"
+
+[urgency_normal]
+background = "#11111f"
+frame_color = "#11da86"
+highlight = "#11da86"
+
+[urgency_low]
+background = "#11111f"
+frame_color = "#11da86"
+highlight = "#11da86"
+
+[fcitx5_groups]
+appname = "Input Method"
+summary = "Switch group"
+frame_color = "#edd017"
+highlight = "#edd017"
+history_ignore = true
+set_stack_tag = "Fcitx 5 groups"
+urgency = critical
+
+# vim: set filetype=cfg:
