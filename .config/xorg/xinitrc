@@ -35,6 +35,7 @@ for script in /etc/X11/xinit/xinitrc.d/*.sh; do
 done
 
 "${HOME}/.local/lib/dotfiles/status-bar" &
+calcurse --daemon &
 dunst &
 element-desktop --hidden &
 fcitx5 &
