@@ -47,6 +47,12 @@ background = "#11111f"
 frame_color = "#11da86"
 highlight = "#11da86"
 
+[calcurse]
+appname = "calcurse"
+frame_color = "#10bacf"
+highlight = "#10bacf"
+timeout = 0
+
 [fcitx5_groups]
 appname = "Input Method"
 summary = "Switch group"
