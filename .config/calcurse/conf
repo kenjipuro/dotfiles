@@ -20,7 +20,7 @@ general.firstdayofweek=sunday
 general.multipledays=no
 general.periodicsave=5
 
-notification.command=notify-send --app-name calcurse --icon x-office-calendar "calcurse appointment" "$(calcurse --next | tail --lines 1 | cut --delimiter ' ' --fields 4-)"
+notification.command=exec "${HOME}/.local/lib/dotfiles/calcurse-notify"
 notification.notifyall=unflagged-only
 notification.warning=1
 
