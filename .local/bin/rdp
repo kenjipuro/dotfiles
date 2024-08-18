@@ -17,7 +17,7 @@
 # Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
 
 if [ "$#" -lt 2 ]; then
-    echo "Usage: rdp USERNAME HOST [OPTION]..." >&2
+    printf "Usage: %s USERNAME HOST [OPTION]...\n" "$(basename -- "$0")" >&2
     exit 1
 fi
 

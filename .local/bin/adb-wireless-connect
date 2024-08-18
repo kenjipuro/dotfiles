@@ -17,7 +17,7 @@
 # Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
 
 if [ "$#" -lt 1 ]; then
-    echo "Usage: adb-wireless-connect HOST[:PORT]" >&2
+    printf "Usage: %s HOST[:PORT]\n" "$(basename -- "$0")" >&2
     exit 1
 fi
 
@@ -27,4 +27,4 @@ adb disconnect "$1"
 
 sleep 1
 
-adb connect "$(echo $1 | cut --delimiter ':' --fields 1)"
+adb connect "$(printf "%s" "$1" | cut --delimiter ':' --fields 1)"
