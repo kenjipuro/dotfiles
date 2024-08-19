@@ -1,0 +1,47 @@
+set dbus-service false
+set font "monospace 10"
+set selection-clipboard "clipboard"
+set statusbar-v-padding 8
+set synctex false
+
+set completion-bg "#11111f"
+set completion-fg "#cbddfd"
+set completion-group-bg "#14151a"
+set completion-group-fg "#cbddfd"
+set completion-highlight-bg "#14151a"
+set completion-highlight-fg "#11da86"
+
+set default-bg "#11111f"
+set default-fg "#cbddfd"
+
+set highlight-active-color "#11da86"
+set highlight-color "#edd017"
+set highlight-fg "#11111f"
+
+set index-bg "#11111f"
+set index-fg "#cbddfd"
+set index-active-bg "#14151a"
+set index-active-fg "#11da86"
+
+set inputbar-bg "#11111f"
+set inputbar-fg "#cbddfd"
+
+set notification-bg "#11111f"
+set notification-fg "#cbddfd"
+set notification-warning-bg "#edd017"
+set notification-warning-fg "#11111f"
+set notification-error-bg "#f15151"
+set notification-error-fg "#11111f"
+
+set recolor true
+set recolor-keephue true
+set recolor-darkcolor "#cbddfd"
+set recolor-lightcolor "#11111f"
+
+set render-loading-bg "#11111f"
+set render-loading-fg "#cbddfd"
+
+set statusbar-bg "#14151a"
+set statusbar-fg "#cbddfd"
+
+# vim: set filetype=conf:
