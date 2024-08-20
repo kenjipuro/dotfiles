@@ -1,0 +1,66 @@
+#!/bin/sh -e
+
+# Copyright (C) 2024 Aoki Kenji
+# This file is part of Aoki Kenji's Dotfiles.
+#
+# Aoki Kenji's Dotfiles is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# Aoki Kenji's Dotfiles is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
+
+get_date() {
+    # Start days at 04:00:00
+    date --date "@$(($(date "+%s") - 14400))" "$@"
+}
+
+if [ -z "$HOME" ]; then
+    echo "Failed to get the home directory." >&2
+    exit 1
+fi
+
+calcurse_data="${XDG_DATA_HOME:-${HOME}/.local/share}/calcurse"
+last_update_path="${calcurse_data}/todo-last-update"
+
+date_today="$(get_date --iso-8601)"
+old_date="$(cat -- "$last_update_path" 2> /dev/null || echo "古い")"
+[ "$old_date" = "$date_today" ] && exit
+
+localized_date_today="$(get_date "+%Y年%m月%d日")"
+
+to_do_path="${calcurse_data}/todo"
+new_to_do_path="${to_do_path}.new"
+
+# Used in order to avoid executing the hook recursively
+temp_config="$(mktemp --directory --tmpdir calcurse-pre-load.XXXXXXXXXX)"
+
+print_as_to_do() {
+    item_format="$1"
+    shift
+    calcurse --confdir "$temp_config" --input-datefmt 4 --day "$date_today" \
+        --format-apt "$item_format" --format-recur-apt "$item_format" \
+        --format-event "$item_format" --format-recur-event "$item_format" \
+        "$@" | tail --lines +2
+}
+
+{
+    print_as_to_do "[1] 【${localized_date_today}】%m\n" \
+        --filter-type event,recur-event
+    cat -- "${calcurse_data}/todo-daily" || :
+
+    # Remove completed entries and replace uncompleted daily entries with the
+    # old date
+    grep --invert-match '^\[-' -- "$to_do_path" |
+        sed 's/\(\[.\] \)【日常】/\1【'"$old_date"'】/g'
+} > "$new_to_do_path"
+
+mv -- "$new_to_do_path" "$to_do_path"
+printf "%s" "$date_today" > "$last_update_path"
+rm --recursive -- "$temp_config"
