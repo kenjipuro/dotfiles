@@ -1,0 +1,53 @@
+#!/bin/sh -e
+
+# Copyright (C) 2024 Aoki Kenji
+# This file is part of Aoki Kenji's Dotfiles.
+#
+# Aoki Kenji's Dotfiles is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# Aoki Kenji's Dotfiles is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# Aoki Kenji's Dotfiles. If not, see <https://www.gnu.org/licenses/>.
+
+if [ -z "$HOME" ]; then
+    echo "Failed to get the home directory." >&2
+    exit 1
+fi
+
+home_ipv4="$(cat -- \
+    "${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles/auto-ssh-config-home-ipv4")"
+
+refresh() {
+    ipv4="$(
+        if [ -z "$TERMUX_VERSION" ]; then
+            ip route get 1 | head --lines 1 | cut --delimiter ' ' --fields 7
+        else
+            termux-wifi-connectioninfo | jq --raw-output .ip
+        fi
+        )" 2>/dev/null
+
+    if [ "$ipv4" = "$home_ipv4" ]; then
+        expected="config.home"
+    else
+        expected="config.other"
+    fi
+
+    if [ "$(readlink config)" != "$expected" ]; then
+        ln --force --symbolic -- "$expected" config
+        killall -USR1 autossh || :
+    fi
+}
+
+cd -- "${HOME}/.ssh"
+sleep 30
+while :; do
+    refresh
+    sleep 5m
+done
