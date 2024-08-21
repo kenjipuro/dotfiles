@@ -1,0 +1,8 @@
+[Install]
+WantedBy=default.target
+
+[Service]
+ExecStart=%h/.local/lib/dotfiles/auto-ssh-config
+
+[Unit]
+Description=auto-ssh-config
