@@ -1,0 +1,6 @@
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop
+image/jpeg=nsxiv.desktop
+image/png=nsxiv.desktop
+
+# vim: set filetype=cfg:
