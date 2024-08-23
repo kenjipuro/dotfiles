@@ -29,6 +29,7 @@ cut_path() {
 maybe_append_segment() {
     segment="$(cut_path --fields 1)"
     [ "$segment" = "${HOME}/.local/bin" ] && return
+    [ "$segment" = "${HOME}/.local/lib/dotfiles/pass-otp" ] && return
     [ -z "$final_path" ] && final_path="$segment" ||
         final_path="${final_path}:${segment}"
 }
