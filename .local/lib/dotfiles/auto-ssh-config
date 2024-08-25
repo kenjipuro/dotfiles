@@ -26,7 +26,7 @@ home_ipv4="$(cat -- \
 
 refresh() {
     ipv4="$(
-        if [ -z "$TERMUX_VERSION" ]; then
+        if [ -z "$ANDROID_ROOT" ]; then
             ip route get 1 | head --lines 1 | cut --delimiter ' ' --fields 7
         else
             termux-wifi-connectioninfo | jq --raw-output .ip

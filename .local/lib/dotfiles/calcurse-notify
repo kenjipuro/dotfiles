@@ -19,7 +19,7 @@
 summary="calcurse appointment"
 body="$(calcurse --next | tail --lines 1 | cut --delimiter ' ' --fields 4-)"
 
-if [ -z "$TERMUX_VERSION" ]; then
+if [ -z "$ANDROID_ROOT" ]; then
     exec notify-send \
         --app-name calcurse \
         --icon x-office-calendar \
