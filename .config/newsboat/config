@@ -23,3 +23,6 @@ highlight article "^(Author|Date|Feed|Links?|Title):" green default bold
 highlight article "https?://[^ ]+" cyan default
 highlight feedlist "(0/0)) #.*" green default bold
 highlight feedlist ".*(0/0))" black default
+
+show-read-articles no
+show-read-feeds no
