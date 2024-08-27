@@ -29,6 +29,7 @@ set searchurls.aup https://aur.archlinux.org/packages/%s
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.d https://duckduckgo.com/?q=%s
 set searchurls.g https://www.google.com/search?q=%s
+set searchurls.ghr https://github.com/%s
 set searchurls.j https://jisho.org/search/%s
 set searchurls.rs https://www.reddit.com/r/%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s
