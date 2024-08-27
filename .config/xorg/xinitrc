@@ -37,7 +37,6 @@ done
 "${HOME}/.local/lib/dotfiles/status-bar" &
 calcurse --daemon &
 dunst &
-element-desktop --hidden &
 fcitx5 &
 lxpolkit &
 unclutter &
