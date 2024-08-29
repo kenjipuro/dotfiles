@@ -1,3 +1,4 @@
+browser ~/.local/lib/dotfiles/newsboat-open
 reload-threads 10
 
 bind-key j down
